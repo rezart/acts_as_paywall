@@ -17,5 +17,12 @@ ActsAsPaywall::CRAWLER_USER_AGENTS = [
   "Mediapartners-Google",
   "Mediapartners (Googlebot)",
   "Mediapartners-Google Mediapartners (Googlebot)",
-  "AdsBot-Google"
+  "AdsBot-Google",
+  "rogerbot/1.0 (http://www.seomoz.org/dp/rogerbot, rogerbot-crawler+pr1-crawler-02@seomoz.org",
+  "rogerbot/1.0 (http://www.seomoz.org/dp/rogerbot, rogerbot-crawler+pr1-crawler-16@seomoz.org)",
+  "roberbot/1.0",
+  "roberBot/1.0",
+  "RogerBot/1.0",
+  "rogerBot",
+  "RogerBot
 ]
