@@ -24,5 +24,5 @@ ActsAsPaywall::CRAWLER_USER_AGENTS = [
   "roberBot/1.0",
   "RogerBot/1.0",
   "rogerBot",
-  "RogerBot
+  "RogerBot"
 ]
