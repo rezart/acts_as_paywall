@@ -38,11 +38,11 @@ module ActsAsPaywall::InstanceMethods
     free_views_used? &&
       !is_google? &&
       !skip_paywall? &&
-      !(user_signed_in? && current_user.subscribed?)
+      !(signed_in?)
   end
 
   def permissible_controller?
-    paywall_option(:permissible_controllers).include?(controller_name)
+    paywall_option(:permissible_controllers).include?("#{controller_name}##{action_name}")
   end
 
   def paywall_option(key)
