@@ -3,6 +3,6 @@ module ActsAsPaywall::Hook
     options = args.extract_options!
     include ActsAsPaywall::InstanceMethods
 
-    before_filter :paywall, options
+    before_action :paywall, options
   end
 end

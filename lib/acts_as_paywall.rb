@@ -18,7 +18,7 @@ module ActsAsPaywall
         }
         class_attribute :paywall_options
         self.paywall_options = configuration
-        send("before_filter", :paywall)
+        send("before_action", :paywall)
       end
     end
   end
