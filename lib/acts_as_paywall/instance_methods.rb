@@ -11,8 +11,17 @@ module ActsAsPaywall::InstanceMethods
     increment_content_views!
   end
 
+  def subscription_wall
+    redirect_to_subscription_wall! if should_redirect_to_subscription_wall?
+    increment_subscription_views!
+  end
+
   def redirect_to_paywall!
     redirect_to paywall_option(:wall_url)
+  end
+
+  def redirect_to_subscription_wall!
+    redirect_to paywall_option(:subscription_url)
   end
 
   def increment_content_views!
@@ -22,12 +31,27 @@ module ActsAsPaywall::InstanceMethods
     cookies[paywall_option(:content_view_cookie_key)] = views.to_s
   end
 
+  def increment_subscription_views!
+    return true if skip_paywall?
+    views = subscription_views
+    views += 1
+    cookies[paywall_option(:subscription_view_cookie_key)] = views.to_s
+  end
+
   def free_views_used?
     content_views.to_i > paywall_option(:free_views) unless skip_paywall?
   end
 
+  def subscription_views_used?
+    subscription_views.to_i > paywall_option(:subscription_views) unless skip_paywall?
+  end
+
   def content_views
     (cookies[paywall_option(:content_view_cookie_key)] ||= 0).to_i
+  end
+
+  def subscription_views
+    (cookies[paywall_option(:subscription_view_cookie_key)] ||= 0).to_i
   end
 
   def skip_paywall?
@@ -39,6 +63,12 @@ module ActsAsPaywall::InstanceMethods
       !is_google? &&
       !skip_paywall? &&
       !(signed_in?)
+  end
+
+  def should_redirect_to_subscription_wall?
+    subscription_views_used? &&
+      signed_in? &&
+      current_user.subscription.nil?
   end
 
   def permissible_controller?

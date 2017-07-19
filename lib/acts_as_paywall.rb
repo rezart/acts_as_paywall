@@ -12,13 +12,16 @@ module ActsAsPaywall
         configuration = {
           permissible_controllers: options.delete(:permissible_controllers) || [],
           free_views: (options.delete(:free_views) || 5).to_i,
+          subscription_views: (options.delete(:subscription_views) || 5).to_i,
           wall_url: options.delete(:wall_url) || root_url,
+          subscription_url: options.delete(:subscription_url) || root_url,
           content_view_cookie_key: (options.delete(:content_view_cookie_key) || :content_views).to_sym,
+          subscription_view_cookie_key: (options.delete(:subscription_view_cookie_key) || :subscription_views).to_sym,
           crawler_user_agents: (options.delete(:crawler_user_agents)) || ActsAsPaywall::CRAWLER_USER_AGENTS
         }
         class_attribute :paywall_options
         self.paywall_options = configuration
-        send("before_action", :paywall)
+        send("before_action", :paywall, :subscription_wall)
       end
     end
   end
