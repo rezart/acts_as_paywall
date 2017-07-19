@@ -68,6 +68,7 @@ module ActsAsPaywall::InstanceMethods
   def should_redirect_to_subscription_wall?
     subscription_views_used? &&
       signed_in? &&
+      !current_user.vip &&
       current_user.subscription.nil?
   end
 
