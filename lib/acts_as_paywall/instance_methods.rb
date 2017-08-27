@@ -19,10 +19,12 @@ module ActsAsPaywall::InstanceMethods
   end
 
   def redirect_to_paywall!
+    session[:return_to] = request.fullpath
     redirect_to paywall_option(:wall_url)
   end
 
   def redirect_to_subscription_wall!
+    session[:return_to] = request.fullpath
     redirect_to paywall_option(:subscription_url)
   end
 
