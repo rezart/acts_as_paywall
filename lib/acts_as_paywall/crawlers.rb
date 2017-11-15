@@ -24,5 +24,6 @@ ActsAsPaywall::CRAWLER_USER_AGENTS = [
   "roberBot/1.0",
   "RogerBot/1.0",
   "rogerBot",
-  "RogerBot"
+  "RogerBot",
+  "Mozilla/5.0 (Unknown; Linux x86_64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.0.0 Safari/538.1"
 ]
