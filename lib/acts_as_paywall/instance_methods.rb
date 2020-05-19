@@ -44,11 +44,11 @@ module ActsAsPaywall::InstanceMethods
   end
 
   def free_views_used?
-    content_views.to_i > paywall_option(:free_views) unless skip_paywall?
+    content_views.to_i > paywall_option(:free_views) if !skip_paywall?
   end
 
   def subscription_views_used?
-    subscription_views.to_i > paywall_option(:subscription_views) unless skip_paywall?
+    subscription_views.to_i > paywall_option(:subscription_views) if !skip_paywall?
   end
 
   def content_views
