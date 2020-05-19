@@ -40,7 +40,7 @@ module ActsAsPaywall::InstanceMethods
     views = subscription_views
     views += 1
     current_user.views = views.to_s
-    current_user.save
+    current_user.save!
   end
 
   def free_views_used?
